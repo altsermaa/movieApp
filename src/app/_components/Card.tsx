@@ -9,9 +9,14 @@ type Card = {
 
 export const Card = ({ movieImage, movieName, movieRating }: Card) => {
   return (
-    <div className="w-[230px] h-[439px] bg-muted">
-      <div className="relative w-[230px] h-[340px]">
-        <Image src={movieImage} alt="movie" objectFit="cover" fill />
+    <div className="w-full h-fit bg-muted">
+      <div className="relative w-[157px] h-[233px] lg:w-[230px] lg:h-[340px]">
+        <Image
+          src={`https://image.tmdb.org/t/p/original/${movieImage}`}
+          alt="movie"
+          objectFit="cover"
+          fill
+        />
       </div>
       <div>
         <h1 className="font-black text-xs">{movieName}</h1>
