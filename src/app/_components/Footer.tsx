@@ -14,8 +14,10 @@ export const Footer = () => {
           : "bg-white text-black"
       }`}
     >
-      <div className={`w-[1280px] m-auto py-10 flex justify-between`}>
-        <div>
+      <div
+        className={`w-[335px] lg:w-[1280px] m-auto py-10 flex flex-col lg:flex-row lg:justify-between`}
+      >
+        <div className="mb-7">
           <div
             className={` flex gap-2 font-black ${
               resolvedTheme === "light" ? "text-white" : "text-[#4339c7]"
@@ -26,7 +28,7 @@ export const Footer = () => {
           </div>
           <div>© 2024 Movie Z. All Rights Reserved.</div>
         </div>
-        <div className="flex gap-24">
+        <div className="flex gap-4 lg:gap-24">
           <div className="flex">
             <div className="flex flex-col">
               <h3>Contact information</h3>
@@ -49,7 +51,7 @@ export const Footer = () => {
           </div>
           <div className="flex flex-col">
             <h3>Follow us</h3>
-            <div className="flex gap-3 font-bold">
+            <div className="flex flex-col lg:flex-row gap-3 font-bold">
               <p>Facebook</p>
               <p>Instagram</p>
               <p>Twitter</p>

@@ -46,14 +46,17 @@ export const CarouselSection = () => {
           {hero.map((el, index) => {
             return (
               <CarouselItem key={index}>
-                <div className="relative w-full h-[600px] p-0">
-                  <Image
-                    src={`https://image.tmdb.org/t/p/original/${el.backdrop_path}`}
-                    fill
-                    objectFit="cover"
-                    alt="carouselImage"
-                  />
-                  <div className="absolute top-1/3 left-32 w-[404px] h-[264px] text-white flex flex-col gap-4">
+                <div className="relative w-full h-[375px] lg:h-[600px] p-0">
+                  <div>
+                    <Image
+                      src={`https://image.tmdb.org/t/p/original/${el.backdrop_path}`}
+                      fill
+                      objectFit="cover"
+                      alt="carouselImage"
+                    />
+                  </div>
+
+                  <div className="lg:absolute lg:top-1/3 lg:left-32 lg:w-[404px] lg:h-[264px] lg:text-white flex flex-col gap-4 relative">
                     <div>
                       <p className="">Now playing:</p>
                       <h1 className="font-black text-4xl">{el.title}</h1>

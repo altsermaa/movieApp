@@ -7,7 +7,7 @@ type SectionTitle = {
 
 export const SectionTitle = ({ title }: SectionTitle) => {
   return (
-    <div className="w-[1277px] m-auto mb-8 flex justify-between">
+    <div className="w-[335px] lg:w-[1277px] m-auto lg:mb-8 flex justify-between">
       <h1 className="font-bold text-2xl">{title}</h1>
       <Button variant="link">
         See more <ArrowRight />

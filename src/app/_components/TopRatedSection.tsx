@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { Card } from "./Card";
 import { SectionTitle } from "./SectionTitle";
-import { getUpcomingApi } from "@/hooks/GetUpcomingApi";
 import { GetTopRatedApi } from "@/hooks/GetTopRatedApi";
+import { useRouter } from "next/navigation";
 
 type TopRatedSectionType = {
   title: string;
@@ -23,13 +23,18 @@ export const TopRatedSection = () => {
     topRatedMovie();
   }, []);
 
+  const router = useRouter();
+  const routerHandler = (path: string) => {
+    router.push(path);
+  };
+
   return (
-    <div className="my-12">
+    <div className="w-[335px] lg:w-[1277px] m-auto my-12">
       <SectionTitle title="Top Rated" />
-      <div className="w-[1277px] m-auto grid gap-4 grid-cols-5 grid-rows-2">
+      <div className="grid grid-cols-2 lg:grid-cols-5 h-fit gap-5 lg:gap-8 m-auto">
         {topRated.map((el, index) => {
           return (
-            <div key={index}>
+            <div key={index} onClick={() => routerHandler(`/details/${el.id}`)}>
               <Card
                 movieImage={el.poster_path}
                 movieName={el.title}

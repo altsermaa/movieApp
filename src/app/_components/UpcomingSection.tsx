@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Card } from "./Card";
 import { SectionTitle } from "./SectionTitle";
 import { getUpcomingApi } from "@/hooks/GetUpcomingApi";
+import Link from "next/link";
 
 type UpcomingMovie = {
   title: string;
@@ -25,16 +26,18 @@ export const UpcomingSection = () => {
   return (
     <div className="w-[335px] lg:w-[1277px] m-auto my-12">
       <SectionTitle title="Upcoming" />
-      <div className="grid grid-cols-2 lg:grid-cols-5 min-h-screen gap-5 lg:gap-8 m-auto">
+      <div className="grid grid-cols-2 lg:grid-cols-5 h-fit gap-5 lg:gap-8 m-auto">
         {upcoming.map((el, index) => {
           return (
-            <div key={index}>
-              <Card
-                movieImage={el.poster_path}
-                movieName={el.title}
-                movieRating={el.vote_average}
-              />
-            </div>
+            <Link href={`/details/${el.id}`}>
+              <div key={index}>
+                <Card
+                  movieImage={el.poster_path}
+                  movieName={el.title}
+                  movieRating={el.vote_average}
+                />
+              </div>
+            </Link>
           );
         })}
       </div>
