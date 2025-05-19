@@ -11,6 +11,6 @@ export const GetTopRatedApi = async () => {
       },
     }
   );
-  console.log(result?.data);
+
   return result?.data;
 };

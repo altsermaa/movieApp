@@ -8,6 +8,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { DetailsImage } from "./DetailsImage";
+import { Crew } from "./Crew";
 
 export type Details = {
   data: {
@@ -18,7 +19,8 @@ export type Details = {
     vote_count: number;
     belongs_to_collection: { backdrop_path: string; poster_path: string };
     poster_path: string;
-    genres: GenresType;
+    backdrop_path: string;
+    genres: GenresType[];
     overview: string;
   };
 };
@@ -82,7 +84,7 @@ export const DetailPageShow = ({ data }: Details) => {
       <DetailsImage data={data} />
       <div className="relative w-screen h-[211px] mt-4 mb-8 lg:hidden">
         <Image
-          src={`https://image.tmdb.org/t/p/original/${data.belongs_to_collection.backdrop_path}`}
+          src={`https://image.tmdb.org/t/p/original/${data.backdrop_path}`}
           fill
           objectFit="cover"
           alt="videoImage"
@@ -119,6 +121,7 @@ export const DetailPageShow = ({ data }: Details) => {
           </div>
         </div>
       </div>
+      <Crew dataCrew={dataCrew} />
     </div>
   );
 };

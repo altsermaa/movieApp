@@ -18,7 +18,7 @@ export const DetailsImage = ({ data }: Details) => {
         </div>
         <div className="relative flex-3/4 h-full">
           <Image
-            src={`https://image.tmdb.org/t/p/original/${data.belongs_to_collection.backdrop_path}`}
+            src={`https://image.tmdb.org/t/p/original/${data.backdrop_path}`}
             fill
             objectFit="cover"
             alt="videoImage"
