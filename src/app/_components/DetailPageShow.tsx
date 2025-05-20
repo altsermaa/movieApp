@@ -8,7 +8,8 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { DetailsImage } from "./DetailsImage";
-import { Crew } from "./Crew";
+import { ProductionTeam } from "./ProductionTeam";
+import { SimilarOffers } from "./SimilarOffers";
 
 export type Details = {
   data: {
@@ -23,14 +24,41 @@ export type Details = {
     genres: GenresType[];
     overview: string;
   };
-};
+  dataCrew: {
+    id: number; 
+    cast: Casttype[]; 
+    crew: CrewType[];
+  };
+  dataSimilar: {
+    results: ResultsType[]
+  }
+}
+
 
 type GenresType = {
   id: number;
   name: string;
 };
 
-export const DetailPageShow = ({ data }: Details) => {
+type Casttype = {
+  name: string; 
+  popularity: number; 
+  order: number; 
+}
+
+type CrewType = {
+  name: string; 
+  job: string;
+}
+
+type ResultsType ={
+  title: string;
+  id: number;
+  poster_path: string;
+  vote_average: number;
+}
+
+export const DetailPageShow = ({ data, dataCrew, dataSimilar }: Details) => {
   const convertMinutesToHours = (runtime: number) => {
     const hours = minutesToHours(runtime);
     const minutesLeft = runtime - hours * 60;
@@ -42,7 +70,7 @@ export const DetailPageShow = ({ data }: Details) => {
   const date = format(data.release_date, "yyyy.MM.dd");
 
   const { setTheme, resolvedTheme } = useTheme();
-  console.log(data);
+ 
 
   return (
     <div className="flex flex-col px-5 my-8 mx-auto lg:w-[1080px] lg:mt-14 lg:mb-28 lg:p-0">
@@ -121,7 +149,8 @@ export const DetailPageShow = ({ data }: Details) => {
           </div>
         </div>
       </div>
-      <Crew dataCrew={dataCrew} />
+      <ProductionTeam dataCrew={dataCrew}/>
+      <SimilarOffers dataSimilar={dataSimilar}/>
     </div>
   );
 };

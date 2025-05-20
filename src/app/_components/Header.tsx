@@ -46,7 +46,7 @@ export const Header = () => {
           },
         }
       );
-      console.log(searchResult?.data);
+      
 
       const data = searchResult?.data?.results?.map(
         ({
