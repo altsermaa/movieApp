@@ -25,15 +25,15 @@ export type Details = {
     overview: string;
   };
   dataCrew: {
-    id: number; 
-    cast: Casttype[]; 
+    id: number;
+    cast: Casttype[];
     crew: CrewType[];
   };
   dataSimilar: {
-    results: ResultsType[]
-  }
-}
-
+    results: ResultsType[];
+  };
+  movieId: string;
+};
 
 type GenresType = {
   id: number;
@@ -41,24 +41,29 @@ type GenresType = {
 };
 
 type Casttype = {
-  name: string; 
-  popularity: number; 
-  order: number; 
-}
+  name: string;
+  popularity: number;
+  order: number;
+};
 
 type CrewType = {
-  name: string; 
+  name: string;
   job: string;
-}
+};
 
-type ResultsType ={
+type ResultsType = {
   title: string;
   id: number;
   poster_path: string;
   vote_average: number;
-}
+};
 
-export const DetailPageShow = ({ data, dataCrew, dataSimilar }: Details) => {
+export const DetailPageShow = ({
+  data,
+  dataCrew,
+  dataSimilar,
+  movieId,
+}: Details) => {
   const convertMinutesToHours = (runtime: number) => {
     const hours = minutesToHours(runtime);
     const minutesLeft = runtime - hours * 60;
@@ -70,7 +75,6 @@ export const DetailPageShow = ({ data, dataCrew, dataSimilar }: Details) => {
   const date = format(data.release_date, "yyyy.MM.dd");
 
   const { setTheme, resolvedTheme } = useTheme();
- 
 
   return (
     <div className="flex flex-col px-5 my-8 mx-auto lg:w-[1080px] lg:mt-14 lg:mb-28 lg:p-0">
@@ -149,8 +153,8 @@ export const DetailPageShow = ({ data, dataCrew, dataSimilar }: Details) => {
           </div>
         </div>
       </div>
-      <ProductionTeam dataCrew={dataCrew}/>
-      <SimilarOffers dataSimilar={dataSimilar}/>
+      <ProductionTeam dataCrew={dataCrew} />
+      <SimilarOffers dataSimilar={dataSimilar} movieId={movieId} />
     </div>
   );
 };

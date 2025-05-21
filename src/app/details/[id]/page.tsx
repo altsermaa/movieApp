@@ -42,7 +42,14 @@ const DetailPage = async ({ params }: ParamType) => {
     }
   );
 
-  return <DetailPageShow data={resultDetails?.data} dataCrew={resultCrew?.data} dataSimilar={resultSimilar?.data}/>;
+  return (
+    <DetailPageShow
+      data={resultDetails?.data}
+      dataCrew={resultCrew?.data}
+      dataSimilar={resultSimilar?.data}
+      movieId={id}
+    />
+  );
 };
 
 export default DetailPage;
