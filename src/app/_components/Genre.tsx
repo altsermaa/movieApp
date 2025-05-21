@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 
 type GenreProps = {
   onClickOutside: () => void;
+  position:string;
 };
 
 type GenreType = {
@@ -14,7 +15,7 @@ type GenreType = {
   name: string;
 };
 
-export const Genre = ({ onClickOutside }: GenreProps) => {
+export const Genre = ({ onClickOutside, position }: GenreProps) => {
   const ref = useRef<HTMLDivElement>(null);
 
   useClickOutside(ref, onClickOutside);
@@ -37,7 +38,7 @@ export const Genre = ({ onClickOutside }: GenreProps) => {
   return (
     <div
       ref={ref}
-      className="absolute w-[577px] border rounded-xl border-[#e4e3e6] p-5 bg-white z-10"
+      className={`w-[577px] border rounded-xl border-[#e4e3e6] p-5 bg-white z-10 ${position}`}
     >
       <h1 className="text-bold">Genres</h1>
       <h6>See lists of movies by genre</h6>

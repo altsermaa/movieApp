@@ -94,7 +94,7 @@ export const Header = () => {
                   <ChevronDown />
                   Genre
                 </Button>
-                {clicked && <Genre onClickOutside={genreHandler} />}
+                {clicked && <Genre onClickOutside={genreHandler} position="absolute"/>}
               </div>
               <div className="relative flex items-center">
                 <Search

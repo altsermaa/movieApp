@@ -23,8 +23,8 @@ export const SimilarOffers = ({ dataSimilar, movieId }: ResultsType) => {
 
   useEffect(() => {
     const getSimilarMovie = async () => {
-      const firstTwenty = dataSimilar?.results?.slice(0, 20);
-      setSimilarMovies(firstTwenty);
+      const firstFive = dataSimilar?.results?.slice(0, 20);
+      setSimilarMovies(firstFive);
     };
     getSimilarMovie();
   }, []);
@@ -37,10 +37,10 @@ export const SimilarOffers = ({ dataSimilar, movieId }: ResultsType) => {
   return (
     <div className="w-[335px] lg:w-[1277px] m-auto my-12">
       <Link href={`/similar/${movieId}`}>
-        <SectionTitle title="More like this" />
+        <SectionTitle title="More like this" movieId={movieId}/>
       </Link>
       <div className="hidden lg:grid grid-cols-2 lg:grid-cols-5 h-fit gap-5 lg:gap-8 m-auto">
-        {similarMovies.slice(0, 5).map((el, index) => {
+        {similarMovies.map((el, index) => {
           return (
             <div key={index} onClick={() => routerHandler(`/details/${el.id}`)}>
               <Card
@@ -52,7 +52,7 @@ export const SimilarOffers = ({ dataSimilar, movieId }: ResultsType) => {
           );
         })}
       </div>
-      <div className="grid grid-cols-2 lg:grid-cols-5 h-fit gap-5 lg:gap-8 m-auto lg:hidden">
+      <div className="grid grid-cols-2 h-fit gap-5 m-auto lg:hidden">
         {similarMovies.slice(0, 2).map((el, index) => {
           return (
             <div key={index} onClick={() => routerHandler(`/details/${el.id}`)}>
