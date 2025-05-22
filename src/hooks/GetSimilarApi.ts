@@ -1,16 +1,8 @@
 import axios from "axios";
 
-interface ParamType {
-  params: {
-    id: string;
-  };
-}
-
-export const GetSimilarApi = async ({ params }: ParamType) => {
-  const { id } = params;
-
+export const GetSimilarApi = async (movieId: string) => {
   const resultSimilar = await axios.get(
-    `https://api.themoviedb.org/3/movie/${id}/similar?language=en-US&page=1`,
+    `https://api.themoviedb.org/3/movie/${movieId}/similar?language=en-US&page=1`,
     {
       headers: {
         "Content-Type": "application/json",
@@ -19,6 +11,5 @@ export const GetSimilarApi = async ({ params }: ParamType) => {
       },
     }
   );
-  console.log(resultSimilar?.data);
   return resultSimilar?.data;
 };

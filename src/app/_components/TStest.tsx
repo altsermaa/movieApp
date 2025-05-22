@@ -57,8 +57,7 @@ console.log(group);
 //     );
 //   }
 
-
-"use client";
+("use client");
 
 import { Moon, Search, Sun, Film } from "lucide-react";
 import { ChevronDown } from "lucide-react";

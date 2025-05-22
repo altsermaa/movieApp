@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 
 type GenreProps = {
   onClickOutside: () => void;
-  position:string;
+  position: string;
 };
 
 type GenreType = {
