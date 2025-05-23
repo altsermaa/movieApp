@@ -9,10 +9,10 @@ import {
 import { getHeroApi } from "@/hooks/GetHeroApi";
 import { Star, Play } from "lucide-react";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import Autoplay from "embla-carousel-autoplay";
 
-type HeroMovie = {
+export type HeroMovie = {
   backdrop_path: string;
   id: number;
   title: string;

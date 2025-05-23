@@ -3,8 +3,13 @@ import { Button } from "@/components/ui/button";
 import { Play } from "lucide-react";
 import { Details } from "./DetailPageShow";
 import { Badge } from "@/components/ui/badge";
+import YouTube from "react-youtube";
 
-export const DetailsImage = ({ data }: Details) => {
+export const DetailsImage = ({ data, dataTrailer }: Details) => {
+  const trailer = dataTrailer?.results?.filter(
+    (el) => el.name === "Official Trailer"
+  );
+
   return (
     <div className="hidden lg:flex lg:flex-col">
       <div className="flex gap-8 w-full h-[428px]">
@@ -23,6 +28,7 @@ export const DetailsImage = ({ data }: Details) => {
             objectFit="cover"
             alt="videoImage"
           />
+          <YouTube videoId={trailer[0].key} />
           <div className="absolute top-3/4 left-3 z-10 flex items-center gap-3">
             <Button className="bg-white rounded-4xl text-black" size="icon">
               <Play />

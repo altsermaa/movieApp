@@ -10,6 +10,8 @@ import { Badge } from "@/components/ui/badge";
 import { DetailsImage } from "./DetailsImage";
 import { ProductionTeam } from "./ProductionTeam";
 import { SimilarOffers } from "./SimilarOffers";
+import { useState } from "react";
+import { SkeletonDetails } from "./SkeletonDetails";
 
 export type Details = {
   data: {
@@ -33,6 +35,9 @@ export type Details = {
     results: ResultsType[];
   };
   movieId: string;
+  dataTrailer: {
+    results: VideoResults[];
+  };
 };
 
 type GenresType = {
@@ -58,11 +63,17 @@ type ResultsType = {
   vote_average: number;
 };
 
+type VideoResults = {
+  key: string;
+  name: string;
+};
+
 export const DetailPageShow = ({
   data,
   dataCrew,
   dataSimilar,
   movieId,
+  dataTrailer,
 }: Details) => {
   const convertMinutesToHours = (runtime: number) => {
     const hours = minutesToHours(runtime);
@@ -76,7 +87,14 @@ export const DetailPageShow = ({
 
   const { setTheme, resolvedTheme } = useTheme();
 
-  return (
+  const [loading, setLoading] = useState<Boolean>(false);
+  const handleLoading = () => {
+    setLoading(!loading);
+  };
+
+  return loading ? (
+    <SkeletonDetails />
+  ) : (
     <div className="flex flex-col px-5 my-8 mx-auto lg:w-[1080px] lg:mt-14 lg:mb-28 lg:p-0">
       <div className="flex justify-between gap-10">
         <div className="flex-2/3">
@@ -113,7 +131,7 @@ export const DetailPageShow = ({
           </div>
         </div>
       </div>
-      <DetailsImage data={data} />
+      <DetailsImage data={data} dataTrailer={dataTrailer} />
       <div className="relative w-screen h-[211px] mt-4 mb-8 lg:hidden">
         <Image
           src={`https://image.tmdb.org/t/p/original/${data.backdrop_path}`}

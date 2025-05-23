@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { Card } from "./Card";
+import { PaginationDemo } from "./Pagination";
 
 type Result = {
   resultSimilar: results[];
@@ -35,6 +36,7 @@ export const Similar = ({ resultSimilar }: Result) => {
           );
         })}
       </div>
+      <PaginationDemo />
     </div>
   );
 };

@@ -11,7 +11,7 @@ type UpcomingMovie = {
   vote_average: number;
 };
 
-export const UpcomingSection = () => {
+export const UpcomingSection = ({setLoading}: {}) => {
   const [upcoming, setUpcoming] = useState<UpcomingMovie[]>([]);
 
   useEffect(() => {
@@ -29,8 +29,8 @@ export const UpcomingSection = () => {
       <div className="grid grid-cols-2 lg:grid-cols-5 h-fit gap-5 lg:gap-8 m-auto">
         {upcoming.map((el, index) => {
           return (
-            <Link href={`/details/${el.id}`}>
-              <div key={index}>
+            <Link href={`/details/${el.id}`} key={index}>
+              <div>
                 <Card
                   movieImage={el.poster_path}
                   movieName={el.title}

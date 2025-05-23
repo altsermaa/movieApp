@@ -1,140 +1,77 @@
-const age: number = 20;
-console.log(age);
+const trailers = trailerRes.data?.results || [];
+  const youtubeTrailer = trailers.find(
+    (video: any) => video.site === "YouTube"
+  );
 
-//   const name: string = "John";
-//   console.log(name);
 
-const prices: Array<number> = [1000, 2000, 3500];
-console.log(prices);
+movie detail
 
-const animals: Array<string> = ["cat", "dog", "mouse"];
-console.log(animals);
+{/* <div className="relative items-center w-full aspect-[3/2] max-w-[760px] max-h-[428px]">
+            <Image
+              src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
+              fill
+              alt="movie"
+              className="object-cover"
+            />
+            <div className="absolute z-1 bottom-0">
+              <MovieTrailer movie={movie} trailerKey={trailerKey} />
+            </div>
+          </div> */}
 
-interface Person {
-  name: string;
-  age: number;
-  isStudent: boolean;
-}
 
-const personA: Person = {
-  name: "John",
-  age: 20,
-  isStudent: true,
-};
+movie trailer comp
 
-console.log(personA);
-
-type Student = {
-  name: string;
-  age: number;
-  isStudent: boolean;
-};
-
-const group: Array<Student> = [
-  {
-    name: "dorj",
-    age: 20,
-    isStudent: true,
-  },
-  {
-    name: "dulmaa",
-    age: 20,
-    isStudent: true,
-  },
-];
-
-console.log(group);
-
-//   export default function Home() {
-//     const haha = (param: number): void => {
-//       console.log(param * 2);
-//     };
-
-//     return (
-//       <div>
-//         <button onClick={() => haha(30)}>Click me</button>
-//       </div>
-//     );
-//   }
-
-("use client");
-
-import { Moon, Search, Sun, Film } from "lucide-react";
-import { ChevronDown } from "lucide-react";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { useTheme } from "next-themes";
+import YouTube from "react-youtube";
 import { useState } from "react";
-import { Genre } from "./Genre";
-
-export const Header = () => {
-  const { setTheme, resolvedTheme } = useTheme();
-  const toggleTheme = () =>
-    setTheme(resolvedTheme === "light" ? "dark" : "light");
-
-  const [clicked, setClicked] = useState(false);
-
-  const genreHandler = () => {
-    setClicked(!clicked);
+import { MovieDetailType } from "@/app/details/[id]/page";
+import Image from "next/image";
+import { Play } from "lucide-react";
+ 
+type Props = {
+  movie: MovieDetailType;
+  trailerKey: string; // YouTube video key, e.g. 'dQw4w9WgXcQ'
+};
+ 
+export const MovieTrailer = ({ movie, trailerKey }: Props) => {
+  const [isOpen, setIsOpen] = useState(false);
+ 
+  const opts = {
+    height: "390",
+    width: "375",
+    playerVars: {
+      autoplay: 1,
+    },
   };
-
-  const [mobileSearchClicked, setMobileSearchClicked] = useState(false);
-
-  const mobileSearch = () => {
-    setMobileSearchClicked(!mobileSearchClicked);
-  };
-
+ 
   return (
-    <div className="flex justify-between items-center h-[59px] px-5 lg:w-[1440px] m-auto lg:py-3">
-      <div className="flex items-center">
-        <div
-          className={` flex gap-2 font-black items-center ${
-            resolvedTheme === "light" ? "text-[#4339c7]" : "text-white-900"
-          }`}
-        >
-          <Film />
-          <h1>Movie Z</h1>
-        </div>
-      </div>
-
-      <div className="flex items-center gap-3">
-        <div className="justify-end lg:justify-center relative flex gap-3">
-          {" "}
-          {/* // Genre + Search */}
-          <div className="hidden lg:contents">
-            <Button variant="outline" onClick={genreHandler}>
-              <ChevronDown />
-              Genre
-            </Button>
-            {clicked && <Genre />}
+    <>
+      <button
+        onClick={() => setIsOpen(true)}
+        className="bg-transparent text-white px-4 py-2 rounded"
+      >
+        <div className="flex h-[40px] gap-2 items-center">
+          <div className="flex items-center justify-center w-[40px] h-[40px] rounded-[100%] bg-white">
+            <Play color="black" />
           </div>
-          <div className="relative flex justify-center w-fit lg:w-[200px] m-auto">
-            {" "}
-            {/* // Search */}
-            <Search
-              className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
-              size={20}
-            />
-            <Input
-              type="search"
-              className="w-[36px] lg:hidden"
-              // onClick={mobileSearch}
-            />
-            <Input
-              type="search"
-              placeholder="Search"
-              className="hidden lg:pl-10 lg:w-[379px]"
-            />
+          <p className="text-sm leading-5 font-[400]">Play trailer</p>
+        </div>
+      </button>
+ 
+      {isOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center z-50">
+          <div className="w-full max-w-2xl aspect-video">
+            <YouTube videoId={trailerKey} opts={opts} />
           </div>
+          <button
+            onClick={() => setIsOpen(false)}
+            className="absolute top-4 right-4 text-white text-2xl"
+          >
+            ✖
+          </button>
         </div>
-        <div className="flex justify-end">
-          {" "}
-          {/* // toggle */}{" "}
-          <Button variant="outline" size="icon" onClick={toggleTheme}>
-            {resolvedTheme === "light" ? <Moon /> : <Sun />}
-          </Button>
-        </div>
-      </div>
-    </div>
+      )}
+    </>
   );
 };
+ 
+ 
