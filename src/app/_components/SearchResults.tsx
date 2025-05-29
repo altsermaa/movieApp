@@ -3,6 +3,7 @@ import { Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { useTheme } from "next-themes";
 
 type DetailsPropsType = {
   poster_path: string;
@@ -28,6 +29,7 @@ export const SearchResults = ({
     setFoundData("");
     setSearch("");
   };
+  const { setTheme, resolvedTheme } = useTheme();
 
   return (
     <div className="flex" onClick={() => routerHandler(`/details/${id}`)}>
@@ -43,7 +45,13 @@ export const SearchResults = ({
         <h1>{title}</h1>
         <div className="flex gap-1">
           <Star className="text-[#f6e238] fill-yellow-300" />
-          <p className="text-white">{vote_average}</p>
+          <p
+            className={`${
+              resolvedTheme === "light" ? "text-black" : "text-white"
+            }`}
+          >
+            {vote_average.toFixed(1)}
+          </p>
           <p className="text-gray-400">/10</p>
         </div>
         <div className="lg:w-[454px] m-auto lg:mb-8 flex justify-between">

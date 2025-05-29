@@ -123,8 +123,8 @@ export const Header = () => {
                   className="hidden lg:block lg:pl-10 w-fit lg:w-[379px]"
                 />
                 {search !== "" && foundData.length > 0 && (
-                  <div className="absolute w-[577px] border border-[#e4e3e6] p-5 bg-white z-10 flex rounded-xl top-10 flex-col">
-                    {foundData.slice(0, 3).map((el, index) => {
+                  <div className="absolute w-[577px] border border-[#e4e3e6] p-5 bg-white z-10 flex rounded-xl top-10 flex-col m-auto">
+                    {foundData.slice(0, 5).map((el, index) => {
                       return (
                         <SearchResults
                           key={index}
@@ -138,6 +138,11 @@ export const Header = () => {
                         />
                       );
                     })}
+                  </div>
+                )}
+                {search !== "" && foundData.length === 0 && (
+                  <div className="absolute w-[577px] border border-[#e4e3e6] p-5 bg-white z-10 flex rounded-xl top-10 flex-col text-center m-auto">
+                    No result found
                   </div>
                 )}
               </div>

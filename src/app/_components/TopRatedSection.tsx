@@ -38,7 +38,7 @@ export const TopRatedSection = () => {
               <Card
                 movieImage={el.poster_path}
                 movieName={el.title}
-                movieRating={el.vote_average}
+                movieRating={el.vote_average.toFixed(1)}
               />
             </div>
           );

@@ -14,8 +14,8 @@ export const DetailsImage = ({ data, dataTrailer }: Details) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const opts = {
-    height: "390",
-    width: "375",
+    height: "561",
+    width: "997",
     playerVars: {
       autoplay: 1,
     },
@@ -40,7 +40,11 @@ export const DetailsImage = ({ data, dataTrailer }: Details) => {
             alt="videoImage"
           />
           <div className="absolute top-3/4 left-3 z-10 flex items-center gap-3">
-            <Button className="bg-white rounded-4xl text-black" size="icon" onClick={() => setIsOpen(true)}>
+            <Button
+              className="bg-white rounded-4xl text-black"
+              size="icon"
+              onClick={() => setIsOpen(true)}
+            >
               <Play />
             </Button>
             <p className="text-white">Play trailer</p>
@@ -49,19 +53,18 @@ export const DetailsImage = ({ data, dataTrailer }: Details) => {
         </div>
 
         {isOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center z-50">
-          <div className="w-full max-w-2xl aspect-video">
-            <YouTube videoId={trailer[0].key} opts={opts} />
+          <div className="fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center z-50">
+            <div className="w-full max-w-2xl aspect-video">
+              <YouTube videoId={trailer[0]?.key} opts={opts} />
+            </div>
+            <button
+              onClick={() => setIsOpen(false)}
+              className="absolute top-4 right-4 text-white text-2xl"
+            >
+              ✖
+            </button>
           </div>
-          <button
-            onClick={() => setIsOpen(false)}
-            className="absolute top-4 right-4 text-white text-2xl"
-          >
-            ✖
-          </button>
-        </div>
-      )}
-
+        )}
       </div>
       <div className="my-8 flex flex-col gap-2">
         <div className="flex flex-wrap gap-1">

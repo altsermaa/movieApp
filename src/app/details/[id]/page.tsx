@@ -53,8 +53,6 @@ const DetailPage = async ({ params }: ParamType) => {
     }
   );
 
-  console.log(resultTrailer?.data);
-
   return (
     <DetailPageShow
       data={resultDetails?.data}
