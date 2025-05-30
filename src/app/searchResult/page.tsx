@@ -5,6 +5,7 @@ import { DataType } from "../_components/Header";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import axios from "axios";
+import Link from "next/link";
 
 const SearchResultPage = () => {
   const searchParams = useSearchParams();
@@ -43,16 +44,21 @@ const SearchResultPage = () => {
 
   return (
     <div className="w-[335px] lg:w-[1277px] m-auto my-12">
-      <h1 className="font-bold text-2xl">Upcoming</h1>
+      <h1 className="font-bold text-2xl">See results</h1>
+      <p>
+        {foundData.length} results for {search}
+      </p>
       <div className="grid grid-cols-2 lg:grid-cols-5 h-fit gap-5 lg:gap-8 m-auto">
         {foundData?.map((el, index) => {
           return (
-            <Card
-              key={index}
-              movieImage={el.poster_path}
-              movieName={el.title}
-              movieRating={el.vote_average.toFixed(1)}
-            />
+            <Link href={`/details/${el.id}`}>
+              <Card
+                key={index}
+                movieImage={el.poster_path}
+                movieName={el.title}
+                movieRating={el.vote_average.toFixed(1)}
+              />
+            </Link>
           );
         })}
       </div>
