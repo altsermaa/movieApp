@@ -15,6 +15,7 @@ import Link from "next/link";
 export type DataType = {
   title: string;
   poster_path: string;
+  backdrop_path: string;
   vote_average: number;
   release_date: string;
   id: number;
@@ -138,6 +139,13 @@ export const Header = () => {
                         />
                       );
                     })}
+                    <div className="border-t-1 py-2">
+                      <Link href={`/searchResult?search=${search}`}>
+                        <p className="px-4 py-2">
+                          See more results of "{search}"
+                        </p>
+                      </Link>
+                    </div>
                   </div>
                 )}
                 {search !== "" && foundData.length === 0 && (

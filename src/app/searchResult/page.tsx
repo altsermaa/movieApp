@@ -1,0 +1,63 @@
+"use client";
+
+import { Card } from "../_components/Card";
+import { DataType } from "../_components/Header";
+import { useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
+import axios from "axios";
+
+const SearchResultPage = () => {
+  const searchParams = useSearchParams();
+  const search = searchParams.get("search");
+  const [foundData, setFoundData] = useState<DataType[]>([]);
+
+  useEffect(() => {
+    const finalResult = async () => {
+      const searchResult = await axios.get(
+        `https://api.themoviedb.org/3/search/movie?query=${search}&language=en-US&page=1`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization:
+              "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkNjdkOGJlYmQwZjRmZjM0NWY2NTA1Yzk5ZTlkMDI4OSIsIm5iZiI6MTc0MjE3NTA4OS4zODksInN1YiI6IjY3ZDc3YjcxODVkMTM5MjFiNTAxNDE1ZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.KxFMnZppBdHUSz_zB4p9A_gRD16I_R6OX1oiEe0LbE8",
+          },
+        }
+      );
+
+      const data = searchResult?.data?.results?.map(
+        ({ title, poster_path, vote_average, release_date, id }: DataType) => {
+          return {
+            title: title,
+            poster_path: poster_path,
+            vote_average: vote_average,
+            release_date: release_date,
+            id: id,
+          };
+        }
+      );
+      setFoundData(data);
+    };
+
+    finalResult();
+  }, [search]);
+
+  return (
+    <div className="w-[335px] lg:w-[1277px] m-auto my-12">
+      <h1 className="font-bold text-2xl">Upcoming</h1>
+      <div className="grid grid-cols-2 lg:grid-cols-5 h-fit gap-5 lg:gap-8 m-auto">
+        {foundData?.map((el, index) => {
+          return (
+            <Card
+              key={index}
+              movieImage={el.poster_path}
+              movieName={el.title}
+              movieRating={el.vote_average.toFixed(1)}
+            />
+          );
+        })}
+      </div>
+    </div>
+  );
+};
+
+export default SearchResultPage;
