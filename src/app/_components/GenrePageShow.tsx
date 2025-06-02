@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { Card } from "./Card";
 import { Genre } from "./Genre";
+import { PaginationDemo } from "./Pagination";
 
 type GenreType = {
   results: Genre[];
@@ -24,11 +25,11 @@ export const GenrePageShow = ({ dataGenre }: GenreType) => {
     <div className="lg:w-[1280px] m-auto">
       <h1 className="font-black text-2xl w-full">Search filter</h1>
       <div className="flex mt-8">
-        <div className="flex-1/4">
-          <Genre position="relative"/>
+        <div className="flex-1/4 border-r-1 border-gray-300 mr-4">
+          <Genre position="relative" width="w-full" border="border-0"/>
         </div>
-        <div className="border-r-1 solid border-gray-300 h-full mx-1"></div>
         <div >
+          <h1 className="font-black">{dataGenre.results?.length} titles in </h1>
           <div className="grid grid-cols-2 lg:grid-cols-4 h-fit gap-5 lg:gap-8 m-auto">
             {dataGenre?.results?.map((el, index) => {
                     return (
@@ -36,13 +37,14 @@ export const GenrePageShow = ({ dataGenre }: GenreType) => {
                         <Card
                           movieImage={el.poster_path}
                           movieName={el.title}
-                          movieRating={el.vote_average}
+                          movieRating={el.vote_average.toFixed(1)}
                         />
                       </div>
                     );
                   })}
 
           </div>
+          <PaginationDemo />
         </div>
       </div>
       

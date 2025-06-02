@@ -6,6 +6,9 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import axios from "axios";
 import Link from "next/link";
+import { Genre } from "../_components/Genre";
+// import { PaginationDemo } from
+
 
 const SearchResultPage = () => {
   const searchParams = useSearchParams();
@@ -43,25 +46,34 @@ const SearchResultPage = () => {
   }, [search]);
 
   return (
-    <div className="w-[335px] lg:w-[1277px] m-auto my-12">
+    <div className="w-[335px] lg:w-[1280px] m-auto my-12">
       <h1 className="font-bold text-2xl">See results</h1>
-      <p>
-        {foundData.length} results for {search}
-      </p>
-      <div className="grid grid-cols-2 lg:grid-cols-5 h-fit gap-5 lg:gap-8 m-auto">
-        {foundData?.map((el, index) => {
-          return (
-            <Link href={`/details/${el.id}`}>
-              <Card
-                key={index}
-                movieImage={el.poster_path}
-                movieName={el.title}
-                movieRating={el.vote_average.toFixed(1)}
-              />
-            </Link>
-          );
-        })}
+      <div className="flex">
+        <div>
+          <p className="font-black">
+          {foundData.length} results for "{search}""
+          </p>
+          <div className="grid grid-cols-2 lg:grid-cols-4 h-fit gap-5 lg:gap-8 m-auto">
+            {foundData?.map((el, index) => {
+              return (
+                <Link key={index} href={`/details/${el.id}`}>
+                  <Card
+                    key={index}
+                    movieImage={el.poster_path}
+                    movieName={el.title}
+                    movieRating={el.vote_average.toFixed(1)}
+                  />
+                </Link>
+              );
+            })}
+          </div>
+          <PaginationDemo />
+        </div>
+        <div className="flex-1/4 border-l-1 border-gray-300 ml-4">
+          <Genre position="relative" width="w-full" border="border-0"/>
+        </div>
       </div>
+
     </div>
   );
 };

@@ -44,6 +44,11 @@ export const Header = () => {
 
   const [foundData, setFoundData] = useState<DataType[]>([]);
 
+  const clear =() => {
+    setFoundData("");
+    setSearch("");
+  }
+
   useEffect(() => {
     const finalResult = async () => {
       const searchResult = await axios.get(
@@ -101,7 +106,7 @@ export const Header = () => {
                   Genre
                 </Button>
                 {clicked && (
-                  <Genre onClickOutside={genreHandler} position="absolute" />
+                  <Genre onClickOutside={genreHandler} position="absolute" width="w-[537px]" border="border"/>
                 )}
               </div>
               <div className="relative flex items-center">
@@ -134,13 +139,14 @@ export const Header = () => {
                           vote_average={el.vote_average}
                           release_date={el.release_date}
                           id={el.id}
-                          setFoundData={setFoundData}
-                          setSearch={setSearch}
+                          // setFoundData={setFoundData}
+                          // setSearch={setSearch}
+                          onClick={clear}
                         />
                       );
                     })}
                     <div className="border-t-1 py-2">
-                      <Link href={`/searchResult?search=${search}`}>
+                      <Link href={`/searchResult?search=${search}`} onClick={clear}>
                         <p className="px-4 py-2">
                           See more results of "{search}"
                         </p>
@@ -149,7 +155,7 @@ export const Header = () => {
                   </div>
                 )}
                 {search !== "" && foundData.length === 0 && (
-                  <div className="absolute w-[577px] border border-[#e4e3e6] p-5 bg-white z-10 flex rounded-xl top-10 flex-col text-center m-auto">
+                  <div onClick={clear} className="absolute w-[577px] border border-[#e4e3e6] p-5 bg-white z-10 flex rounded-xl top-10 flex-col text-center m-auto">
                     No result found
                   </div>
                 )}

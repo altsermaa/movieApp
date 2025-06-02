@@ -5,7 +5,7 @@ import { useTheme } from "next-themes";
 type Card = {
   movieImage: string;
   movieName: string;
-  movieRating: number;
+  movieRating: string;
 };
 
 export const Card = ({ movieImage, movieName, movieRating }: Card) => {

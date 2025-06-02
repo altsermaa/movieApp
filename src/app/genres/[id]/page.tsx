@@ -21,8 +21,6 @@ const GenrePage = async ({ params }: ParamType) => {
     }
   );
 
-  console.log(resultGenre?.data);
-
   return (
     <div>
       <GenrePageShow dataGenre={resultGenre?.data} />

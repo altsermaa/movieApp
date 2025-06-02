@@ -13,6 +13,7 @@ type DetailsPropsType = {
   id: number;
   setFoundData: void;
   setSearch: void;
+  onClick: void;
 };
 
 export const SearchResults = ({
@@ -22,16 +23,18 @@ export const SearchResults = ({
   release_date,
   id,
   setFoundData,
+  onClick
 }: DetailsPropsType) => {
   const router = useRouter();
   const routerHandler = (path: string) => {
     router.push(path);
-    setFoundData("");
-    setSearch("");
   };
   const { setTheme, resolvedTheme } = useTheme();
 
   return (
+    <div onClick={onClick}>
+
+    
     <div className="flex" onClick={() => routerHandler(`/details/${id}`)}>
       <div className="relative lg:w-[67px] lg:h-[100px]">
         <Image
@@ -62,6 +65,7 @@ export const SearchResults = ({
         </div>
       </div>
       <div></div>
+    </div>
     </div>
   );
 };
