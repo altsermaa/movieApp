@@ -3,6 +3,7 @@ import { Card } from "./Card";
 import { SectionTitle } from "./SectionTitle";
 import { GetTopRatedApi } from "@/hooks/GetTopRatedApi";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 type TopRatedSectionType = {
   title: string;
@@ -30,7 +31,10 @@ export const TopRatedSection = () => {
 
   return (
     <div className="w-[335px] lg:w-[1277px] m-auto my-12">
-      <SectionTitle title="Top Rated" />
+      <Link href="/topRated">
+        <SectionTitle title="Top Rated" />
+      </Link>
+
       <div className="grid grid-cols-2 lg:grid-cols-5 h-fit gap-5 lg:gap-8 m-auto">
         {topRated.map((el, index) => {
           return (

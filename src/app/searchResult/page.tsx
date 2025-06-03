@@ -7,7 +7,6 @@ import { useSearchParams } from "next/navigation";
 import axios from "axios";
 import Link from "next/link";
 import { Genre } from "../_components/Genre";
-// import { PaginationDemo } from
 
 
 const SearchResultPage = () => {
@@ -51,7 +50,7 @@ const SearchResultPage = () => {
       <div className="flex">
         <div>
           <p className="font-black">
-          {foundData.length} results for "{search}""
+            {foundData.length} results for "{search}""
           </p>
           <div className="grid grid-cols-2 lg:grid-cols-4 h-fit gap-5 lg:gap-8 m-auto">
             {foundData?.map((el, index) => {
@@ -67,13 +66,11 @@ const SearchResultPage = () => {
               );
             })}
           </div>
-          <PaginationDemo />
         </div>
         <div className="flex-1/4 border-l-1 border-gray-300 ml-4">
-          <Genre position="relative" width="w-full" border="border-0"/>
+          <Genre position="relative" width="w-full" border="border-0" />
         </div>
       </div>
-
     </div>
   );
 };
