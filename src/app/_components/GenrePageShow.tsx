@@ -29,7 +29,7 @@ export const GenrePageShow = ({ dataGenre }: GenreType) => {
           <Genre position="relative" width="w-full" border="border-0"/>
         </div>
         <div >
-          <h1 className="font-black">{dataGenre.results?.length} titles in </h1>
+          <h1 className="font-black">{dataGenre.results?.length} results </h1>
           <div className="grid grid-cols-2 lg:grid-cols-4 h-fit gap-5 lg:gap-8 m-auto">
             {dataGenre?.results?.map((el, index) => {
                     return (

@@ -4,6 +4,7 @@ import { useClickOutside } from "@/hooks/useClickOutside";
 import { ChevronRight } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
+import { useTheme } from "next-themes";
 
 type GenreProps = {
   onClickOutside: () => void;
@@ -21,6 +22,7 @@ export const Genre = ({ onClickOutside, position, width, border }: GenreProps) =
   const ref = useRef<HTMLDivElement>(null);
 
   useClickOutside(ref, onClickOutside);
+  const { setTheme, resolvedTheme } = useTheme();
 
   const [genres, setGenre] = useState<GenreType[]>([]);
 
@@ -40,13 +42,21 @@ export const Genre = ({ onClickOutside, position, width, border }: GenreProps) =
   return (
     <div
       ref={ref}
-      className={`${width} ${border} rounded-xl border-[#e4e3e6] p-5 bg-white z-10 ${position}`}
+      className={`${width} ${border} rounded-xl border-[#e4e3e6] p-5 z-10 ${position} ${
+        resolvedTheme === "light"
+          ? "bg-white text-black"
+          : "bg-black text-white"
+      }`}
     >
       <h1 className="text-bold">Genres</h1>
       <h6>See lists of movies by genre</h6>
       <div className="border border-b-[#e4e3e6] my-4"></div>
 
-      <div className="w-full h-fit flex flex-wrap items-center cursor-pointer">
+      <div className={`w-full h-fit flex flex-wrap items-center cursor-pointer ${
+        resolvedTheme === "light"
+          ? "bg-white text-black"
+          : "bg-black text-white"
+      }`}>
         {genres.map((el, index) => {
           return (
             <div key={index} onClick={() => routerHandler(`/genres/${el.id}`)}>

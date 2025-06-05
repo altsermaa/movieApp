@@ -12,6 +12,12 @@ import Image from "next/image";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import Autoplay from "embla-carousel-autoplay";
 import { CarouselDesc } from "./CarouselDesc";
+import {
+  Dialog,
+  DialogContent,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import YouTube from "react-youtube";
 
 export type HeroMovie = {
   backdrop_path: string;
@@ -57,30 +63,37 @@ export const CarouselSection = () => {
                     />
                   </div>
 
-                  <div className="lg:absolute lg:top-1/3 lg:left-32 lg:w-[404px] lg:h-[264px] lg:text-white flex flex-col gap-4 relative">
-                    <div>
+                  <div>
+                    <div className="hidden lg:absolute lg:top-1/3 lg:left-32 lg:w-[404px] lg:h-[264px] lg:text-white">
                       <CarouselDesc
                         id={el.id}
                         title={el.title}
                         vote_average={el.vote_average}
                         overview={el.overview}
                       />
-                      {/* <p className="">Now playing:</p>
+                    </div>
+                    <div className="flex flex-col gap-4 relative lg:hidden">
+                      <p className="">Now playing:</p>
                       <h1 className="font-black text-4xl">{el.title}</h1>
                       <div className="flex gap-1">
                         <Star className="text-[#f6e238] fill-yellow-300" />
-                        <p className="text-white">
-                          {el.vote_average.toFixed(1)}
-                        </p>
+                        <p className="text-white">{el.vote_average.toFixed(1)}</p>
                         <p className="text-gray-400">/10</p>
                       </div>
                       <p>{el.overview}</p>
-                      <Button
-                        variant={"outline"}
-                        className="w-fit bg-white text-black"
-                      >
-                        <Play /> Watch trailer
-                      </Button> */}
+
+                      <Dialog>
+                        <form>
+                          <DialogTrigger asChild>
+                            <Button variant="outline" className="w-fit bg-white text-black">
+                              <Play /> Watch trailer
+                            </Button>
+                          </DialogTrigger>
+                          <DialogContent className="lg:w-[997px] bg-none">
+                            {/* <YouTube videoId={trailer} opts={opts} /> */}
+                          </DialogContent>
+                        </form>
+                      </Dialog>
                     </div>
                   </div>
                 </div>

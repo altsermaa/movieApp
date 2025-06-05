@@ -1,6 +1,6 @@
 "use client";
 
-import { Moon, Search, Sun, Film } from "lucide-react";
+import { Moon, Search, Sun, Film, Loader2Icon } from "lucide-react";
 import { ChevronDown } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -18,7 +18,7 @@ export type DataType = {
   backdrop_path: string;
   vote_average: number;
   release_date: string;
-  id: number;
+  id: string;
 };
 
 export const Header = () => {
@@ -155,8 +155,8 @@ export const Header = () => {
                   </div>
                 )}
                 {search !== "" && foundData.length === 0 && (
-                  <div onClick={clear} className="absolute w-[577px] border border-[#e4e3e6] p-5 bg-white z-10 flex rounded-xl top-10 flex-col text-center m-auto">
-                    No result found
+                  <div onClick={clear} className="absolute w-[577px] h-[128px] border border-[#e4e3e6] p-5 bg-white z-10 flex rounded-xl top-10 justify-center items-center m-auto">
+                    <Loader2Icon className="animate-spin" />
                   </div>
                 )}
               </div>
