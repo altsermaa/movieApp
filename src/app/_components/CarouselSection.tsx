@@ -11,10 +11,11 @@ import { Star, Play } from "lucide-react";
 import Image from "next/image";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import Autoplay from "embla-carousel-autoplay";
+import { CarouselDesc } from "./CarouselDesc";
 
 export type HeroMovie = {
   backdrop_path: string;
-  id: number;
+  id: string;
   title: string;
   overview: string;
   vote_average: number;
@@ -58,7 +59,13 @@ export const CarouselSection = () => {
 
                   <div className="lg:absolute lg:top-1/3 lg:left-32 lg:w-[404px] lg:h-[264px] lg:text-white flex flex-col gap-4 relative">
                     <div>
-                      <p className="">Now playing:</p>
+                      <CarouselDesc
+                        id={el.id}
+                        title={el.title}
+                        vote_average={el.vote_average}
+                        overview={el.overview}
+                      />
+                      {/* <p className="">Now playing:</p>
                       <h1 className="font-black text-4xl">{el.title}</h1>
                       <div className="flex gap-1">
                         <Star className="text-[#f6e238] fill-yellow-300" />
@@ -73,7 +80,7 @@ export const CarouselSection = () => {
                         className="w-fit bg-white text-black"
                       >
                         <Play /> Watch trailer
-                      </Button>
+                      </Button> */}
                     </div>
                   </div>
                 </div>
