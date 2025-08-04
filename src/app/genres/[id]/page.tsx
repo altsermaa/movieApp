@@ -2,13 +2,13 @@ import { GenrePageShow } from "@/app/_components/GenrePageShow";
 import axios from "axios";
 
 interface ParamType {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
 const GenrePage = async ({ params }: ParamType) => {
-  const { id } = params;
+  const { id } = await params;
 
   const resultGenre = await axios.get(
     `https://api.themoviedb.org/3/discover/movie?language=en&with_genres=${id}&page=1`,
@@ -23,7 +23,7 @@ const GenrePage = async ({ params }: ParamType) => {
 
   return (
     <div>
-      <GenrePageShow dataGenre={resultGenre?.data} />
+      <GenrePageShow {...resultGenre?.data} />
     </div>
   );
 };
