@@ -18,7 +18,7 @@ export type DataType = {
   backdrop_path: string;
   vote_average: number;
   release_date: string;
-  id: string;
+  id: number;
 };
 
 export const Header = () => {
@@ -45,7 +45,7 @@ export const Header = () => {
   const [foundData, setFoundData] = useState<DataType[]>([]);
 
   const clear =() => {
-    setFoundData("");
+    setFoundData([]);
     setSearch("");
   }
 
@@ -139,8 +139,8 @@ export const Header = () => {
                           vote_average={el.vote_average}
                           release_date={el.release_date}
                           id={el.id}
-                          // setFoundData={setFoundData}
-                          // setSearch={setSearch}
+                          setFoundData={() => setFoundData([])}
+                          setSearch={() => setSearch("")}
                           onClick={clear}
                         />
                       );
