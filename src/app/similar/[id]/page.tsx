@@ -2,13 +2,13 @@ import { GetSimilarApi } from "@/hooks/GetSimilarApi";
 import { Similar } from "@/app/_components/Similar";
 
 interface ParamType {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
 const SimilarPage = async ({ params }: ParamType) => {
-  const { id } = params;
+  const { id } = await params;
 
   const resultSimilar = await GetSimilarApi(id);
 

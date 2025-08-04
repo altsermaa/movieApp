@@ -68,7 +68,7 @@ const SearchResultPage = () => {
           </div>
         </div>
         <div className="flex-1/4 border-l-1 border-gray-300 ml-4">
-          <Genre position="relative" width="w-full" border="border-0" />
+          <Genre position="relative" width="w-full" border="border-0" onClickOutside={() => {}} />
         </div>
       </div>
     </div>
