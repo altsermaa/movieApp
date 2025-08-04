@@ -1,12 +1,35 @@
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Play } from "lucide-react";
-import { Details } from "./DetailPageShow";
 import { Badge } from "@/components/ui/badge";
 import YouTube from "react-youtube";
 import { useState } from "react";
 
-export const DetailsImage = ({ data, dataTrailer }: Details) => {
+type DetailsImageProps = {
+  data: {
+    runtime: number;
+    title: string;
+    release_date: string;
+    vote_average: number;
+    vote_count: number;
+    belongs_to_collection: { backdrop_path: string; poster_path: string };
+    poster_path: string;
+    backdrop_path: string;
+    genres: {
+      id: number;
+      name: string;
+    }[];
+    overview: string;
+  };
+  dataTrailer: {
+    results: {
+      key: string;
+      name: string;
+    }[];
+  };
+};
+
+export const DetailsImage = ({ data, dataTrailer }: DetailsImageProps) => {
   const trailer = dataTrailer?.results?.filter(
     (el) => el.name === "Official Trailer"
   );

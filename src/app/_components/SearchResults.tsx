@@ -11,9 +11,9 @@ type DetailsPropsType = {
   vote_average: number;
   release_date: string;
   id: number;
-  setFoundData: void;
-  setSearch: void;
-  onClick: void;
+  setFoundData: () => void;
+  setSearch: () => void;
+  onClick: () => void;
 };
 
 export const SearchResults = ({

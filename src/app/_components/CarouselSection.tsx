@@ -42,7 +42,7 @@ export const CarouselSection = () => {
   return (
     <div>
       <Carousel
-        className="w-screen h-[600px] mt-6"
+        className="w-screen h-auto lg:h-[600px] mt-6"
         plugins={[
           Autoplay({
             delay: 2000,
@@ -53,18 +53,18 @@ export const CarouselSection = () => {
           {hero.map((el, index) => {
             return (
               <CarouselItem key={index}>
-                <div className="relative w-full h-[375px] lg:h-[600px] p-0">
-                  <div>
+                <div className="relative w-full">
+        
+                  <div className="relative w-full h-[375px] lg:h-[600px]">
                     <Image
                       src={`https://image.tmdb.org/t/p/original/${el.backdrop_path}`}
                       fill
                       objectFit="cover"
                       alt="carouselImage"
                     />
-                  </div>
-
-                  <div>
-                    <div className="hidden lg:absolute lg:top-1/3 lg:left-32 lg:w-[404px] lg:h-[264px] lg:text-white">
+                    
+        
+                    <div className="hidden lg:block lg:absolute lg:top-1/3 lg:left-32 lg:w-[404px] lg:h-[264px] lg:text-white">
                       <CarouselDesc
                         id={el.id}
                         title={el.title}
@@ -72,25 +72,30 @@ export const CarouselSection = () => {
                         overview={el.overview}
                       />
                     </div>
-                    <div className="flex flex-col gap-4 relative lg:hidden">
-                      <p className="">Now playing:</p>
-                      <h1 className="font-black text-4xl">{el.title}</h1>
-                      <div className="flex gap-1">
+                  </div>
+
+    
+      
+                  <div className="lg:hidden p-4 text-black dark:text-white">
+                    <div className="flex flex-col gap-4">
+                      <p className="text-sm text-gray-600 dark:text-gray-400">Now playing:</p>
+                      <h1 className="font-black text-2xl">{el.title}</h1>
+                      <div className="flex gap-1 items-center">
                         <Star className="text-[#f6e238] fill-yellow-300" />
-                        <p className="text-white">{el.vote_average.toFixed(1)}</p>
-                        <p className="text-gray-400">/10</p>
+                        <p className="text-black dark:text-white">{el.vote_average.toFixed(1)}</p>
+                        <p className="text-gray-600 dark:text-gray-400">/10</p>
                       </div>
-                      <p>{el.overview}</p>
+                      <p className="text-sm text-gray-700 dark:text-gray-300 line-clamp-3">{el.overview}</p>
 
                       <Dialog>
                         <form>
                           <DialogTrigger asChild>
-                            <Button variant="outline" className="w-fit bg-white text-black">
-                              <Play /> Watch trailer
+                            <Button variant="outline" className="w-fit bg-white text-black hover:bg-gray-100 dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700">
+                              <Play className="w-4 h-4 mr-2" /> Watch trailer
                             </Button>
                           </DialogTrigger>
                           <DialogContent className="lg:w-[997px] bg-none">
-                            {/* <YouTube videoId={trailer} opts={opts} /> */}
+                            
                           </DialogContent>
                         </form>
                       </Dialog>
@@ -101,8 +106,8 @@ export const CarouselSection = () => {
             );
           })}
         </CarouselContent>
-        <CarouselPrevious className="absolute top-1/2 left-3 z-2" />
-        <CarouselNext className="absolute top-1/2 right-3 z-2" />
+        <CarouselPrevious className="absolute top-1/2 left-3 z-10" />
+        <CarouselNext className="absolute top-1/2 right-3 z-10" />
       </Carousel>
     </div>
   );

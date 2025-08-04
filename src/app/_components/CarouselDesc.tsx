@@ -5,12 +5,7 @@ import { useEffect, useState } from "react";
 import YouTube from "react-youtube";
 import {
   Dialog,
-  DialogClose,
   DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
 

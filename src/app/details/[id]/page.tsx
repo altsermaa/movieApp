@@ -2,13 +2,13 @@ import { DetailPageShow } from "@/app/_components/DetailPageShow";
 import axios from "axios";
 
 interface ParamType {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
 const DetailPage = async ({ params }: ParamType) => {
-  const { id } = params;
+  const { id } = await params;
 
   const resultDetails = await axios.get(
     `https://api.themoviedb.org/3/movie/${id}?language=en-US`,
