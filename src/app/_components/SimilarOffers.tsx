@@ -39,8 +39,6 @@ export const SimilarOffers = ({ dataSimilar, movieId }: ResultsType) => {
       <Link href={`/similar/${movieId}`}>
         <SectionTitle
           title="More like this"
-          movieId={movieId}
-          dataSimilar={dataSimilar}
         />
       </Link>
       <div className="hidden lg:grid grid-cols-2 lg:grid-cols-5 h-fit gap-5 lg:gap-8 m-auto">
