@@ -49,10 +49,10 @@ export const CarouselSection = () => {
           }),
         ]}
       >
-        <CarouselContent className="relative w-full h-full">
+        <CarouselContent className="relative w-full h-full -ml-0">
           {hero.map((el, index) => {
             return (
-              <CarouselItem key={index}>
+              <CarouselItem key={index} className="pl-0">
                 <div className="relative w-full">
         
                   <div className="relative w-full h-[375px] lg:h-[600px]">
