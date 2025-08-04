@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const getDetailsApi = async () => {
+export const getDetailsApi = async (id: string) => {
   const resultDetails = await axios.get(
     `https://api.themoviedb.org/3/movie/${id}?language=en-US`,
     {
@@ -15,7 +15,7 @@ export const getDetailsApi = async () => {
   return resultDetails?.data;
 };
 
-export const getVideoApi = async () => {
+export const getVideoApi = async (id: string) => {
   const resultVideo = await axios.get(
     `https://api.themoviedb.org/3/movie/${id}/videos?language=en-US`,
     {
