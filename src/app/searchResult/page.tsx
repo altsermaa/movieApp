@@ -2,14 +2,13 @@
 
 import { Card } from "../_components/Card";
 import { DataType } from "../_components/Header";
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import axios from "axios";
 import Link from "next/link";
 import { Genre } from "../_components/Genre";
 
-
-const SearchResultPage = () => {
+const SearchResultContent = () => {
   const searchParams = useSearchParams();
   const search = searchParams.get("search");
   const [foundData, setFoundData] = useState<DataType[]>([]);
@@ -72,6 +71,14 @@ const SearchResultPage = () => {
         </div>
       </div>
     </div>
+  );
+};
+
+const SearchResultPage = () => {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <SearchResultContent />
+    </Suspense>
   );
 };
 
